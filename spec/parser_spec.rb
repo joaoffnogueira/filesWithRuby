@@ -30,16 +30,3 @@ RSpec.describe "#print_first_line" do
   end
 
 end
-
-RSpec.describe "#close" do
-
-  context "parser is done" do
-    it "closes de file" do
-      @file = File.open("./spec/test.log", 'r')
-      @file.close
-      @file
-      expect nil
-    end
-  end
- 
-end
