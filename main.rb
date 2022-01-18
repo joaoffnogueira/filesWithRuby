@@ -1,4 +1,4 @@
-require_relative 'parser'
+require_relative 'lib/parser'
 
 def main
     puts "Indicate the path to your log:"

@@ -1,4 +1,4 @@
-require_relative "../parser"
+require_relative "../lib/parser"
 
 RSpec.describe "#initialize" do
   
@@ -11,7 +11,7 @@ RSpec.describe "#initialize" do
   
   context "file exists" do
     it "so open the file" do
-      file = File.open("./games.log", 'r')
+      file = File.open("./spec/test.log", 'r')
       expect File.exists?(file)
     end
   end
@@ -22,10 +22,10 @@ RSpec.describe "#print_first_line" do
 
   context "log is games.log" do
     it "and parser prints its first line" do
-      file = File.open("./games.log", 'r')
+      file = File.open("./spec/test.log", 'r')
       parser = Parser.new(file)
       parser.print_first_line
-      expect "0:00 ------------------------------------------------------------"
+      expect "first line of test.log"
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe "#close" do
 
   context "parser is done" do
     it "closes de file" do
-      @file = File.open("./games.log", 'r')
+      @file = File.open("./spec/test.log", 'r')
       @file.close
       @file
       expect nil
