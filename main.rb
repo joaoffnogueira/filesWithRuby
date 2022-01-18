@@ -1,3 +1,6 @@
+require_relative 'log'
+require_relative 'parser'
+
 def main
     puts "Indicate the path to your log:"
     path = gets.chomp
