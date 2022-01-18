@@ -1,8 +1,16 @@
 class Parser
-    def initialize(log)
-        @log = log
+    def initialize(path)
+        @path = path
+        begin
+            @file = File.open(path, 'r')
+        rescue
+            raise "File not found"
+        end
     end
     def print_first_line
-        puts @log.readline
+        puts @file.readline
+    end
+    def close
+        @file.close
     end
 end
