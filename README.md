@@ -31,6 +31,5 @@ Now you can run `ruby main.rb` providing your own log file or use this one for t
 To test you can run:
 
 ```bash
-rspec spec/main_spec.rb
 rspec spec/parser_spec.rb
 ```
