@@ -1,4 +1,4 @@
-Class Parser
+class Parser
     def initialize(log)
         @log = log
     end
