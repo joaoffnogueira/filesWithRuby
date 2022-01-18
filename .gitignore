@@ -1,4 +1,5 @@
 games.log
+.vscode/
 *.gem
 *.rbc
 /.config
