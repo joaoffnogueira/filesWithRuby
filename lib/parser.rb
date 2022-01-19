@@ -20,11 +20,7 @@ class Parser
   end
 
   def count_lines
-    lines = 0
-    @file.each_line do |line|
-      lines += 1
-    end
-    lines
+    @file.readlines.size
   end
     
 end
