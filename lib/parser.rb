@@ -1,3 +1,5 @@
+require_relative '../lib/to_json'
+
 class Parser
 
   def initialize(path)
@@ -15,6 +17,16 @@ class Parser
   
   def close
     @file.close
+  end
+
+  def count_lines
+    lines = 0
+    @file.each_line do |line|
+      lines += 1
+    end
+    full_path = File.expand_path(@file)
+    print = ToJSON.new(full_path, lines)
+    print.to_json
   end
     
 end

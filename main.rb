@@ -5,6 +5,7 @@ def main
   path = gets.chomp
   parser = Parser.new(path)
   parser.print_first_line
+  parser.count_lines
   parser.close
 end
 
