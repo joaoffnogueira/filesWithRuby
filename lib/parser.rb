@@ -1,4 +1,4 @@
-require_relative '../lib/to_json'
+require 'json'
 
 class Parser
 
@@ -20,7 +20,18 @@ class Parser
   end
 
   def count_lines
-    @file.readlines.size
+    @lines = @file.readlines.size
   end
-    
+  
+  def output
+    self.count_lines
+    full_path = File.expand_path(@path)
+    json = {
+      full_path => {
+        "lines" => @lines
+      } 
+    }
+    JSON.pretty_generate(json)
+  end
+  
 end

@@ -52,5 +52,4 @@ To test you can run:
 
 ```bash
 rspec spec/parser_spec.rb
-rspec spec/to_json_spec.rb
 ```

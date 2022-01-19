@@ -5,10 +5,7 @@ def main
   path = gets.chomp
   parser = Parser.new(path)
   puts (parser.print_first_line)
-  lines = parser.count_lines
-  full_path = File.expand_path(path)
-  print = ToJSON.new(full_path, lines)
-  puts (print.to_json)
+  puts (parser.output)
   parser.close
 end
 

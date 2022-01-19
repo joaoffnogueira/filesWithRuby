@@ -47,3 +47,18 @@ RSpec.describe "#count_lines" do
   end
 
 end
+
+RSpec.describe "#output" do
+
+  context "log is test.log" do
+    it "parser puts returns as json" do
+
+      file = File.open("./spec/test.log", 'r')
+      parser = Parser.new(file)
+      full_path = File.expand_path(file)
+
+      expect(parser.output).to eq("{\n  \"#{full_path}\": {\n    \"lines\": 10\n  }\n}")
+    end
+  end
+
+end
