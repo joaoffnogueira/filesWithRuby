@@ -12,7 +12,7 @@ class Parser
   end
 
   def print_first_line
-    puts @file.readline
+    @file.readline
   end
   
   def close
@@ -24,9 +24,7 @@ class Parser
     @file.each_line do |line|
       lines += 1
     end
-    full_path = File.expand_path(@file)
-    print = ToJSON.new(full_path, lines)
-    print.to_json
+    lines
   end
     
 end

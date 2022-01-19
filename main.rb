@@ -4,8 +4,11 @@ def main
   puts "Indicate the path to your log:"
   path = gets.chomp
   parser = Parser.new(path)
-  parser.print_first_line
-  parser.count_lines
+  puts (parser.print_first_line)
+  lines = parser.count_lines
+  full_path = File.expand_path(path)
+  print = ToJSON.new(full_path, lines)
+  puts (print.to_json)
   parser.close
 end
 

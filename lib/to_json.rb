@@ -13,7 +13,7 @@ class ToJSON
         "lines" => @lines
       } 
     }
-    puts JSON.pretty_generate(json)
+    JSON.pretty_generate(json)
   end
 
 end
