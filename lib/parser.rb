@@ -5,9 +5,9 @@ class Parser
   def initialize(path)
     @path = path
     begin
-        @file = File.open(path, 'r')
+      @file = File.open(path, 'r')
     rescue
-        raise "File not found"
+      raise 'File not found'
     end
   end
 
@@ -28,7 +28,7 @@ class Parser
     full_path = File.expand_path(@path)
     json = {
       full_path => {
-        "lines" => @lines
+        'lines' => @lines
       } 
     }
     JSON.pretty_generate(json)
