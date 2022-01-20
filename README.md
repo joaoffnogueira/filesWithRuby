@@ -2,6 +2,8 @@
 
 This project gives an introduction about dealing with files on Ruby!
 
+It's a parser for games logs, which returns the first line content, the full path of the file and the number of lines.
+
 To run it on a linux distro, begin installing rvm, the version manager of Ruby:
 
 ## Install GPG keys:
