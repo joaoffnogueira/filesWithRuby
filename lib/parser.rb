@@ -18,20 +18,20 @@ class Parser
   def close
     @file.close
   end
-
-  def count_lines
-    @lines = @file.readlines.size
-  end
   
   def output
-    self.count_lines
     full_path = File.expand_path(@path)
     json = {
       full_path => {
-        'lines' => @lines
+        'lines' => count_lines()
       } 
     }
     JSON.pretty_generate(json)
   end
   
+  private
+  def count_lines
+    @file.readlines.size
+  end
+
 end
