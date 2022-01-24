@@ -38,15 +38,15 @@ class Parser
   end
 
   def find_players
-    @players = Set.new
+    players = Set.new
     @hotspots.each do |hotspot|
       hotspot.to_s.split(' killed ', 2).each do |word|
         unless word == '<world>'
-          @players << word
+          players << word
         end
       end
     end
-    @players
+    players.to_a
   end
 
   def output
@@ -54,8 +54,8 @@ class Parser
     full_path = File.expand_path(@path)
     json = {
       full_path => {
-        'lines' => count_lines(),
-        'players' => @players.to_a
+        'lines' => count_lines,
+        'players' => find_players
       }
     }
     JSON.pretty_generate(json)
