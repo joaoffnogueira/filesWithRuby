@@ -51,7 +51,8 @@ class Parser
     full_path = File.expand_path(@path)
     json = {
       full_path => {
-        'lines' => count_lines
+        'lines' => count_lines,
+        'players' => @players.to_a
       }
     }
     JSON.pretty_generate(json)
