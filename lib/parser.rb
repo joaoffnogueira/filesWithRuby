@@ -19,10 +19,9 @@ class Parser
 
   def output
     @file = File.open(@path, 'r')
-    full_path = File.expand_path(@path)
     parse_file_hotspots
     json = {
-      full_path => {
+      @file.path => {
         'lines' => count_lines,
         'players' => find_players
       }
