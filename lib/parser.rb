@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
+require 'set'
 
 class Parser
   def initialize(path)
@@ -20,11 +21,37 @@ class Parser
     @file.close
   end
 
+  def parse_file_hotspots
+    expression1 = Regexp.new(/([A-z<>\s]+\skilled\s[A-z\s]{1,20})/)
+    expression2 = Regexp.new(/^(?:(?!\sby).)*/)
+    @file = File.open(@path, 'r')
+    substrings = []
+    @hotspots = []
+    @file.readlines.each do |line|
+      if line.match(expression1) !=nil then (substrings << line.match(expression1).captures).flatten!
+      end
+    end
+    substrings.each do |substring|
+      @hotspots << substring.to_s.lstrip.slice(expression2)
+    end
+  end
+
+  def find_players
+    @players = Set.new
+    @hotspots.each do |hotspot|
+      hotspot.to_s.split(' killed ', 2).each do |word|
+        unless word == '<world>'
+          @players << word
+        end
+      end
+    end
+  end
+
   def output
     full_path = File.expand_path(@path)
     json = {
       full_path => {
-        'lines' => count_lines()
+        'lines' => count_lines
       }
     }
     JSON.pretty_generate(json)
