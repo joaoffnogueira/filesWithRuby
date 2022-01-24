@@ -48,10 +48,11 @@ class Parser
   end
 
   def output
+    @file = File.open(@path, 'r')
     full_path = File.expand_path(@path)
     json = {
       full_path => {
-        'lines' => count_lines,
+        'lines' => count_lines(),
         'players' => @players.to_a
       }
     }
