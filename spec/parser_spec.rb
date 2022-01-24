@@ -46,9 +46,9 @@ RSpec.describe '#output' do
       file = File.open('./spec/test.log', 'r')
       parser = Parser.new(file)
       full_path = File.expand_path(file)
-      @players = Set['João', 'JavaScript']
+      @players = Set['Joao', 'JavaScript']
 
-      expect(parser.output).to eq("{\n  \"#{full_path}\": {\n    \"lines\": 10,\n    \"players\": [\n      \"João\",\n      \"JavaScript\"\n    ]\n  }\n}")
+      expect(parser.output).to eq("{\n  \"#{full_path}\": {\n    \"lines\": 10,\n    \"players\": [\n      \"Joao\",\n      \"JavaScript\"\n    ]\n  }\n}")
     end
   end
 end
@@ -58,9 +58,8 @@ RSpec.describe '#parse_file_hotspots' do
     it 'parser gets the hotspots of information' do
       @path = './spec/test.log'
       parser = Parser.new(@path)
-      parser.parse_file_hotspots
 
-      expect(@hotspots.inspect).to eq("João killed JavaScript")
+      expect(parser.parse_file_hotspots).to eq(["Joao killed JavaScript", "Joao killed JavaScript"])
     end
   end
 end
@@ -68,12 +67,11 @@ end
 RSpec.describe '#find_players' do
   context 'log is test.log' do
     it 'parser gets the hotspots of information' do
-      @hotspots = ['João killed JavaScript']
+      @hotspots = ["Joao killed JavaScript", "Joao killed JavaScript"]
       @path = './spec/test.log'
       parser = Parser.new(@path)
-      parser.find_players
 
-      expect(@players.to_a).to eq('João', 'JavaScript')
+      expect(parser.find_players).to eq('Joao', 'JavaScript')
     end
   end
 end

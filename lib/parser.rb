@@ -34,6 +34,7 @@ class Parser
     substrings.each do |substring|
       @hotspots << substring.to_s.lstrip.slice(expression2)
     end
+    @hotspots
   end
 
   def find_players
@@ -45,6 +46,7 @@ class Parser
         end
       end
     end
+    @players
   end
 
   def output
