@@ -17,14 +17,24 @@ class Parser
     @file.readline
   end
 
-  def close
-    @file.close
+  def output
+    @file = File.open(@path, 'r')
+    full_path = File.expand_path(@path)
+    parse_file_hotspots
+    json = {
+      full_path => {
+        'lines' => count_lines,
+        'players' => find_players
+      }
+    }
+    JSON.pretty_generate(json)
   end
+
+  private
 
   def parse_file_hotspots
     expression1 = Regexp.new(/([A-z<>\s]+\skilled\s[A-z\s]{1,20})/)
     expression2 = Regexp.new(/^(?:(?!\sby).)*/)
-    @file = File.open(@path, 'r')
     substrings = []
     @hotspots = []
     @file.readlines.each do |line|
@@ -37,6 +47,11 @@ class Parser
     @hotspots
   end
 
+  def count_lines
+    @file = File.open(@path, 'r')
+    @file.readlines.size
+  end
+
   def find_players
     players = Set.new
     @hotspots.each do |hotspot|
@@ -47,21 +62,5 @@ class Parser
       end
     end
     players.to_a
-  end
-
-  def output
-    @file = File.open(@path, 'r')
-    full_path = File.expand_path(@path)
-    json = {
-      full_path => {
-        'lines' => count_lines,
-        'players' => find_players
-      }
-    }
-    JSON.pretty_generate(json)
-  end
-
-  def count_lines
-    @file.readlines.size
   end
 end

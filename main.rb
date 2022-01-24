@@ -7,10 +7,7 @@ def main
   path = gets.chomp
   parser = Parser.new(path)
   puts(parser.print_first_line)
-  parser.parse_file_hotspots
-  parser.find_players
   puts(parser.output)
-  parser.close
 end
 
 if __FILE__ == $PROGRAM_NAME
