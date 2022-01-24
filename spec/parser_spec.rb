@@ -67,9 +67,9 @@ end
 RSpec.describe '#find_players' do
   context 'log is test.log' do
     it 'parser gets the hotspots of information' do
-      @hotspots = ["Joao killed JavaScript", "Joao killed JavaScript"]
       @path = './spec/test.log'
       parser = Parser.new(@path)
+      @hotspots = ["Joao killed JavaScript", "Joao killed JavaScript"]
 
       expect(parser.find_players).to eq('Joao', 'JavaScript')
     end
