@@ -5,3 +5,4 @@ source "https://rubygems.org"
 # gem "rails"
 ruby '3.1.0'
 gem 'rspec'
+gem 'simplecov', require: false, group: :test
