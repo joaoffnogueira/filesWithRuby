@@ -8,7 +8,7 @@ class Parser
     @path = path
     begin
       @file = File.open(path, 'r')
-    rescue
+    rescue RuntimeError
       raise 'File not found'
     end
   end
